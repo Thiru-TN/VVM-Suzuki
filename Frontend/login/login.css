@@ -1,0 +1,697 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+/* Time-based themes with improved colors */
+body.morning {
+  background-image: url("../assets/images/morning.png");
+  --text-color: #ffffff;
+  --accent-color: #74b9ff;
+  --input-bg: rgba(255, 255, 255, 0.15);
+  --input-border: rgba(255, 255, 255, 0.3);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+}
+
+body.night {
+  background-image: url("../assets/images/night.png");
+  --text-color: #ffffff;
+  --accent-color: #74b9ff;
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --input-border: rgba(255, 255, 255, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+}
+
+.form-container {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  width: 420px; /* Default width for login */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden; /* For the form flash effect */
+}
+
+.form-container.register-mode {
+  width: 550px; /* Width for register form */
+}
+
+.form-container.otp-mode {
+  width: 450px; /* Width for OTP form */
+}
+
+/* Password toggle styles */
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-color);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.password-toggle:hover {
+  opacity: 1;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+/* Forgot password link */
+.forgot-password {
+  display: block;
+  text-align: right;
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.forgot-password:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Speedometer styles */
+.speedometer-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 120px;
+  /* Default position for night theme */
+  top: 57.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s ease;
+  z-index: 5;
+}
+
+.speedometer-dial {
+  position: relative;
+  width: 120px;
+  height: 60px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.speedometer-dial::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 60px 60px 0 0;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-bottom: none;
+  box-sizing: border-box;
+}
+
+.speedometer-marks {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.speedometer-mark {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  transform-origin: 50% 100%;
+}
+
+.speedometer-mark.major {
+  height: 15px;
+  background: var(--accent-color);
+}
+
+.speedometer-needle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  height: 50px;
+  background: linear-gradient(to top, var(--accent-color), #fff);
+  transform-origin: 50% 100%;
+  transform: translateX(-50%) rotate(-90deg);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 2;
+  border-radius: 3px 3px 0 0;
+}
+
+.speedometer-center {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 3;
+}
+
+.digital-display {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  color: var(--accent-color);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(116, 185, 255, 0.7);
+  letter-spacing: 1px;
+  /* Default margin for night theme */
+  margin-top: 25px;
+  height: 24px;
+  transition: all 0.5s ease;
+}
+
+body.morning .speedometer-container {
+  top: 60%;
+}
+
+body.morning .digital-display {
+  margin-top: 35px;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: var(--text-color);
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.form-subtitle {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 10px;
+}
+
+.form-row .form-group {
+  flex: 0 0 calc(50% - 0.5rem);
+  margin-bottom: 0;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  color: #0080ff;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.form-input.error {
+  border-color: #dc3545;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.3);
+}
+
+.form-input.valid {
+  border-color: #28a745;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+}
+
+.form-input::placeholder {
+  color: var(--accent-color);
+}
+
+.form-input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(116, 185, 255, 0.3);
+  background: #142029;
+  transform: translateY(-2px);
+}
+
+.form-label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0080ff;
+  font-size: 1rem;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  padding: 0 0.5rem;
+}
+
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  opacity: 1;
+  background: #142029;
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--accent-color), #0984e3);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(116, 185, 255, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(116, 185, 255, 0.4);
+  background: linear-gradient(135deg, #0984e3, var(--accent-color));
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Google Sign-in button styles */
+.google-signin-btn {
+  width: 100%;
+  padding: 10px;
+  background: #ffffff;
+  border: 2px solid #dadce0;
+  border-radius: 12px;
+  color: #3c4043;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.google-signin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: #9aa0a6;
+  background: #f8f9fa;
+}
+
+.google-icon {
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23EA4335' d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/%3E%3Cpath fill='%23FBBC05' d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/%3E%3Cpath fill='%2334A853' d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z'/%3E%3Cpath fill='%23EA4335' d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+/* Button row for register form */
+.button-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 10px;
+}
+
+.button-row .submit-btn,
+.button-row .google-signin-btn {
+  flex: 1;
+  margin-top: 0;
+}
+
+.switch-form {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.switch-link {
+  color: var(--accent-color);
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.switch-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.form-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.form-content.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Form flash effect - now only affects the form */
+.form-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: screen;
+  border-radius: 20px;
+}
+
+.flash-animation {
+  animation: formFlash 0.6s ease-out forwards;
+}
+
+@keyframes formFlash {
+  0% {
+    opacity: 0;
+    clip-path: circle(0% at 50% 50%);
+  }
+  50% {
+    opacity: 0.9;
+    clip-path: circle(75% at 50% 50%);
+  }
+  100% {
+    opacity: 0;
+    clip-path: circle(150% at 50% 50%);
+  }
+}
+
+/* OTP Form Styles */
+.otp-info {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.otp-welcome {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.otp-instruction {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.otp-email {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.otp-input-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.otp-digit {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  color: var(--accent-color);
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.otp-digit:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(116, 185, 255, 0.4);
+  background: #142029;
+  transform: scale(1.05);
+}
+
+.otp-digit.filled {
+  border-color: #28a745;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+}
+
+.otp-timer {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.timer-text {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.timer-expired {
+  color: #dc3545;
+}
+
+.resend-btn {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  border-radius: 12px;
+  color: var(--accent-color);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.resend-btn:hover:not(:disabled) {
+  background: var(--accent-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.resend-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.otp-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Logo styles */
+.logo {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  color: var(--text-color);
+  font-weight: 300;
+  font-size: 1.8rem;
+  z-index: 20;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+  letter-spacing: 1px;
+  cursor: pointer; /* Added cursor pointer */
+}
+
+.logo:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.logo span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--accent-color);
+  margin-top: 0.2rem;
+  opacity: 0.9;
+}
+
+.suzuki-logo {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  height: 80px;
+  width: auto;
+  z-index: 20;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Notification System */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  background: var(--accent-color);
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transform: translateX(150%);
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: 1000;
+  max-width: 350px;
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+.notification-icon {
+  font-size: 1.5rem;
+}
+
+.notification.success {
+  background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.notification.error {
+  background: linear-gradient(135deg, #dc3545, #fd7e14);
+}
+
+.notification.warning {
+  background: linear-gradient(135deg, #ffc107, #fd7e14);
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.notification-message {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.notification-close:hover {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-container {
+    width: 90% !important;
+    padding: 2rem 1.5rem;
+    top: 15%;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-row .form-group {
+    flex: 1 0 100%;
+  }
+
+  .button-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .otp-input-container {
+    gap: 0.3rem;
+  }
+
+  .otp-digit {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .suzuki-logo {
+    height: 40px;
+    top: 1rem;
+    right: 1rem;
+  }
+}
