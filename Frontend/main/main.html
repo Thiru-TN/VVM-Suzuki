@@ -71,6 +71,473 @@
       </div>
     </header>
 
+    <!-- Main Content -->
+    <main class="main-container">
+      <!-- Initial Dashboard with Morphing Shapes -->
+      <div class="dashboard-container" id="dashboardContainer">
+        <div id="wrapper" data-configuration="1" data-roundness="1">
+          <div class="shape" data-section="quotation">
+            <div class="shape-content">
+              <div class="shape-icon">
+                <i class="fas fa-file-invoice-dollar"></i>
+              </div>
+              <div class="shape-title">Quotation</div>
+            </div>
+          </div>
+          <div class="shape" data-section="booking">
+            <div class="shape-content">
+              <div class="shape-icon">
+                <i class="fas fa-calendar-check"></i>
+              </div>
+              <div class="shape-title">Online Booking</div>
+            </div>
+          </div>
+          <div class="shape" data-section="testRide">
+            <div class="shape-content">
+              <div class="shape-icon"><i class="fas fa-motorcycle"></i></div>
+              <div class="shape-title">Test Ride</div>
+            </div>
+          </div>
+          <div class="shape" data-section="gallery">
+            <div class="shape-content">
+              <div class="shape-icon"><i class="fas fa-images"></i></div>
+              <div class="shape-title">Gallery</div>
+            </div>
+          </div>
+          <div class="shape" data-section="feedback">
+            <div class="shape-content">
+              <div class="shape-icon"><i class="fas fa-star"></i></div>
+              <div class="shape-title">Feedback</div>
+            </div>
+          </div>
+          <div class="shape" data-section="profile">
+            <div class="shape-content">
+              <div class="shape-icon"><i class="fas fa-user"></i></div>
+              <div class="shape-title">Profile</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Sidebar Layout -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <!-- Left Sidebar -->
+        <div class="sidebar-nav" id="leftSidebar">
+          <div class="sidebar-shapes">
+            <div class="shape" data-section="quotation">
+              <div class="shape-content">
+                <div class="shape-icon">
+                  <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <div class="shape-title">Quotation</div>
+              </div>
+            </div>
+            <div class="shape" data-section="booking">
+              <div class="shape-content">
+                <div class="shape-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="shape-title">Online Booking</div>
+              </div>
+            </div>
+            <div class="shape" data-section="testRide">
+              <div class="shape-content">
+                <div class="shape-icon"><i class="fas fa-motorcycle"></i></div>
+                <div class="shape-title">Test Ride</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area" id="contentArea">
+          <div class="content-section active" id="quotationSection">
+            <h2>Quotation Management</h2>
+            <p>
+              Create and manage quotes for customers. Generate professional
+              quotes with all necessary details including pricing,
+              specifications, and terms.
+            </p>
+            <div style="text-align: center; margin-top: 40px">
+              <div
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-light)
+                  );
+                  padding: 30px;
+                  border-radius: 15px;
+                  color: white;
+                  margin-bottom: 20px;
+                "
+              >
+                <i
+                  class="fas fa-file-invoice-dollar"
+                  style="font-size: 3rem; margin-bottom: 15px"
+                ></i>
+                <h3>Professional Quotations</h3>
+                <p>Streamlined quote generation system</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" id="bookingSection">
+            <h2>Online Booking</h2>
+            <p>
+              Schedule appointments and manage bookings. View upcoming
+              appointments and availability for service and consultations.
+            </p>
+            <div style="text-align: center; margin-top: 40px">
+              <div
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--primary-dark),
+                    var(--primary)
+                  );
+                  padding: 30px;
+                  border-radius: 15px;
+                  color: white;
+                  margin-bottom: 20px;
+                "
+              >
+                <i
+                  class="fas fa-calendar-check"
+                  style="font-size: 3rem; margin-bottom: 15px"
+                ></i>
+                <h3>Smart Scheduling</h3>
+                <p>Efficient appointment management system</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" id="testRideSection">
+            <h2>Test Ride Booking</h2>
+            <p>
+              Manage motorcycle test ride requests. Schedule and track test ride
+              appointments with ease and efficiency.
+            </p>
+            <div style="text-align: center; margin-top: 40px">
+              <div
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--primary-light),
+                    var(--accent)
+                  );
+                  padding: 30px;
+                  border-radius: 15px;
+                  color: white;
+                  margin-bottom: 20px;
+                "
+              >
+                <i
+                  class="fas fa-motorcycle"
+                  style="font-size: 3rem; margin-bottom: 15px"
+                ></i>
+                <h3>Test Drive Experience</h3>
+                <p>Book your perfect ride experience</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" id="gallerySection">
+            <h2>Gallery</h2>
+            <p>
+              Showcase your motorcycle collection with high-quality images and
+              detailed descriptions of all available models.
+            </p>
+            <div style="text-align: center; margin-top: 40px">
+              <div
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--feature),
+                    var(--primary-dark)
+                  );
+                  padding: 30px;
+                  border-radius: 15px;
+                  color: white;
+                  margin-bottom: 20px;
+                "
+              >
+                <i
+                  class="fas fa-images"
+                  style="font-size: 3rem; margin-bottom: 15px"
+                ></i>
+                <h3>Visual Showcase</h3>
+                <p>Stunning motorcycle collections</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" id="feedbackSection">
+            <h2>Customer Feedback</h2>
+            <p>
+              View and manage customer reviews and ratings. Respond to feedback
+              and continuously improve your services.
+            </p>
+            <div style="text-align: center; margin-top: 40px">
+              <div
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--violet)
+                  );
+                  padding: 30px;
+                  border-radius: 15px;
+                  color: white;
+                  margin-bottom: 20px;
+                "
+              >
+                <i
+                  class="fas fa-star"
+                  style="font-size: 3rem; margin-bottom: 15px"
+                ></i>
+                <h3>Customer Voice</h3>
+                <p>Reviews and rating management</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" id="profileSection">
+            <h2>Profile Management</h2>
+            <p>
+              Update your account settings and personal information. Change
+              password, preferences, and business details.
+            </p>
+            <div style="text-align: center; margin-top: 40px">
+              <div
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--violet),
+                    var(--pink)
+                  );
+                  padding: 30px;
+                  border-radius: 15px;
+                  color: white;
+                  margin-bottom: 20px;
+                "
+              >
+                <i
+                  class="fas fa-user"
+                  style="font-size: 3rem; margin-bottom: 15px"
+                ></i>
+                <h3>Account Settings</h3>
+                <p>Manage your profile and preferences</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="sidebar-nav-right" id="rightSidebar">
+          <div class="sidebar-shapes">
+            <div class="shape" data-section="gallery">
+              <div class="shape-content">
+                <div class="shape-icon"><i class="fas fa-images"></i></div>
+                <div class="shape-title">Gallery</div>
+              </div>
+            </div>
+            <div class="shape" data-section="feedback">
+              <div class="shape-content">
+                <div class="shape-icon"><i class="fas fa-star"></i></div>
+                <div class="shape-title">Feedback</div>
+              </div>
+            </div>
+            <div class="shape" data-section="profile">
+              <div class="shape-content">
+                <div class="shape-icon"><i class="fas fa-user"></i></div>
+                <div class="shape-title">Profile</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Content Sections -->
+      <div class="mobile-content" id="mobileQuotationSection">
+        <h2>Quotation Management</h2>
+        <p>Create and manage quotes for customers on mobile device.</p>
+        <div style="text-align: center; margin-top: 30px">
+          <div
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-light)
+              );
+              padding: 25px;
+              border-radius: 15px;
+              color: white;
+            "
+          >
+            <i
+              class="fas fa-file-invoice-dollar"
+              style="font-size: 2.5rem; margin-bottom: 10px"
+            ></i>
+            <h3>Mobile Quotations</h3>
+            <p>Quick and easy quote generation</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-content" id="mobileBookingSection">
+        <h2>Online Booking</h2>
+        <p>Schedule appointments from your mobile device with ease.</p>
+        <div style="text-align: center; margin-top: 30px">
+          <div
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--primary-dark),
+                var(--primary)
+              );
+              padding: 25px;
+              border-radius: 15px;
+              color: white;
+            "
+          >
+            <i
+              class="fas fa-calendar-check"
+              style="font-size: 2.5rem; margin-bottom: 10px"
+            ></i>
+            <h3>Mobile Booking</h3>
+            <p>Schedule on the go</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-content" id="mobileTestRideSection">
+        <h2>Test Ride Booking</h2>
+        <p>Book test rides directly from your phone quickly and efficiently.</p>
+        <div style="text-align: center; margin-top: 30px">
+          <div
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--primary-light),
+                var(--accent)
+              );
+              padding: 25px;
+              border-radius: 15px;
+              color: white;
+            "
+          >
+            <i
+              class="fas fa-motorcycle"
+              style="font-size: 2.5rem; margin-bottom: 10px"
+            ></i>
+            <h3>Mobile Test Rides</h3>
+            <p>Experience on demand</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-content" id="mobileGallerySection">
+        <h2>Gallery</h2>
+        <p>Browse our motorcycle collection optimized for mobile viewing.</p>
+        <div style="text-align: center; margin-top: 30px">
+          <div
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--feature),
+                var(--primary-dark)
+              );
+              padding: 25px;
+              border-radius: 15px;
+              color: white;
+            "
+          >
+            <i
+              class="fas fa-images"
+              style="font-size: 2.5rem; margin-bottom: 10px"
+            ></i>
+            <h3>Mobile Gallery</h3>
+            <p>Swipe through stunning collections</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-content" id="mobileFeedbackSection">
+        <h2>Customer Feedback</h2>
+        <p>View and submit feedback from your mobile device.</p>
+        <div style="text-align: center; margin-top: 30px">
+          <div
+            style="
+              background: linear-gradient(135deg, var(--accent), var(--violet));
+              padding: 25px;
+              border-radius: 15px;
+              color: white;
+            "
+          >
+            <i
+              class="fas fa-star"
+              style="font-size: 2.5rem; margin-bottom: 10px"
+            ></i>
+            <h3>Mobile Feedback</h3>
+            <p>Rate and review instantly</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-content" id="mobileProfileSection">
+        <h2>Profile Management</h2>
+        <p>Update your profile settings and preferences on mobile.</p>
+        <div style="text-align: center; margin-top: 30px">
+          <div
+            style="
+              background: linear-gradient(135deg, var(--violet), var(--pink));
+              padding: 25px;
+              border-radius: 15px;
+              color: white;
+            "
+          >
+            <i
+              class="fas fa-user"
+              style="font-size: 2.5rem; margin-bottom: 10px"
+            ></i>
+            <h3>Mobile Profile</h3>
+            <p>Manage settings anywhere</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Bottom Navigation -->
+      <div class="bottom-nav" id="bottomNav">
+        <div class="bottom-nav-container">
+          <div class="bottom-nav-item" data-section="quotation">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Quotation</span>
+          </div>
+          <div class="bottom-nav-item" data-section="booking">
+            <i class="fas fa-calendar-check"></i>
+            <span>Booking</span>
+          </div>
+          <div class="bottom-nav-item" data-section="testRide">
+            <i class="fas fa-motorcycle"></i>
+            <span>Test Ride</span>
+          </div>
+          <div class="bottom-nav-item" data-section="gallery">
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+          </div>
+          <div class="bottom-nav-item" data-section="feedback">
+            <i class="fas fa-star"></i>
+            <span>Feedback</span>
+          </div>
+          <div class="bottom-nav-item" data-section="profile">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
     <!-- Notification System -->
     <div id="notification" class="notification">
       <div class="notification-icon">
@@ -103,7 +570,6 @@
         </div>
       </div>
     </div>
-
     <script src="./main.js"></script>
   </body>
 </html>
