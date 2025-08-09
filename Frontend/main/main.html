@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vignesh Vishnu Motors</title>
+    <link rel="icon" href="../assets/images/logo-png.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <header class="shellbar">
+      <div class="shellbar-container">
+        <div class="brand-container">
+          <a href="../landing/landing.html" class="logo-link">
+            <img
+              src="../assets/images/Suzuki.png"
+              alt="Suzuki Logo"
+              class="logo"
+            />
+          </a>
+          <h1 class="title">
+            <span class="magic">
+              <span class="magic-text">VIGNESH VISHNU MOTORS</span>
+            </span>
+          </h1>
+        </div>
+        <nav class="nav-desktop">
+          <div class="nav-buttons">
+            <a href="#bikes" class="nav-btn">
+              <i class="fas fa-user-circle"></i> Anand
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
+        </nav>
+        <div class="login-container">
+          <button class="btn logout-btn">
+            <i class="fas fa-sign-out-alt"></i> LOGOUT
+          </button>
+        </div>
+        <div class="nav-icon" id="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="nav-mobile">
+        <a href="#bikes" class="mobile-nav-btn">
+          <i class="fas fa-user-circle"></i> Anand
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+        <button class="btn mobile-logout-btn">
+          <i class="fas fa-sign-out-alt"></i> LOGOUT
+        </button>
+      </div>
+    </header>
+
+    <!-- Notification System -->
+    <div id="notification" class="notification">
+      <div class="notification-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="notification-content">
+        <div class="notification-title">Success</div>
+        <div class="notification-message">
+          Your message has been sent successfully!
+        </div>
+      </div>
+      <button class="notification-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Confirm Logout</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to logout?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-cancel">Cancel</button>
+          <button class="btn btn-confirm">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
