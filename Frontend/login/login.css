@@ -60,6 +60,10 @@ body.night {
   width: 450px; /* Width for OTP form */
 }
 
+.form-container.password-reset-mode {
+  width: 480px; /* Width for password reset form */
+}
+
 /* Password toggle styles */
 .password-toggle {
   position: absolute;
