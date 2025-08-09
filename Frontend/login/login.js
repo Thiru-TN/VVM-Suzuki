@@ -1,6 +1,7 @@
 // Validation Patterns
 const validationPatterns = {
   name: /^[a-zA-Z\s]+$/,
+  lastName: /^[a-zA-Z\s\-]*$|^NA$/i, // Updated to allow empty, single character, -, or NA
   phone: /^[6-9]\d{9}$/,
   email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
@@ -10,6 +11,7 @@ const validationPatterns = {
 let otpTimer;
 let timeLeft = 180; // 3 minutes in seconds
 let userEmail = '';
+let isFromForgotPassword = false; // Track if OTP is for password reset
 
 function setInitialTheme() {
   const hour = new Date().getHours();
@@ -104,6 +106,22 @@ function calculateOTPProgress() {
   return Math.round((filledCount / otpInputs.length) * 100);
 }
 
+// Calculate Password Reset completion percentage
+function calculatePasswordResetProgress() {
+  const newPasswordInput = document.getElementById('newPassword');
+  const confirmNewPasswordInput = document.getElementById('confirmNewPassword');
+  let filledCount = 0;
+
+  if (newPasswordInput.value.trim() !== "") {
+    filledCount++;
+  }
+  if (confirmNewPasswordInput.value.trim() !== "") {
+    filledCount++;
+  }
+
+  return Math.round((filledCount / 2) * 100);
+}
+
 // Notification System
 function showNotification(type, title, message, duration = 4000) {
   const notification = document.getElementById("notification");
@@ -144,6 +162,37 @@ function validateName(name) {
   if (name.trim().length < 2) {
     return "Name should be at least 2 characters long";
   }
+  return null;
+}
+
+function validateLastName(lastName) {
+  // Allow empty, single character, "-", or "NA" (case insensitive)
+  if (!lastName || lastName.trim() === "") {
+    return null; // Allow empty
+  }
+  
+  const trimmed = lastName.trim();
+  
+  // Allow single character
+  if (trimmed.length === 1 && /^[a-zA-Z\-]$/.test(trimmed)) {
+    return null;
+  }
+  
+  // Allow "NA" (case insensitive)
+  if (trimmed.toUpperCase() === "NA") {
+    return null;
+  }
+  
+  // Allow "-"
+  if (trimmed === "-") {
+    return null;
+  }
+  
+  // For longer names, check pattern
+  if (!validationPatterns.lastName.test(trimmed)) {
+    return "Last name should contain only letters, spaces, or hyphens";
+  }
+  
   return null;
 }
 
@@ -197,8 +246,10 @@ function validateInput(input, validationType) {
 
   switch (validationType) {
     case 'firstName':
-    case 'lastName':
       error = validateName(value);
+      break;
+    case 'lastName':
+      error = validateLastName(value);
       break;
     case 'phone':
       error = validatePhone(value);
@@ -207,11 +258,16 @@ function validateInput(input, validationType) {
       error = validateEmail(value);
       break;
     case 'password':
+    case 'newPassword':
       error = validatePassword(value);
       break;
     case 'confirmPassword':
       const password = document.getElementById('registerPassword').value;
       error = validateConfirmPassword(password, value);
+      break;
+    case 'confirmNewPassword':
+      const newPassword = document.getElementById('newPassword').value;
+      error = validateConfirmPassword(newPassword, value);
       break;
   }
 
@@ -220,7 +276,7 @@ function validateInput(input, validationType) {
     input.classList.add('error');
     input.classList.remove('valid');
     return false;
-  } else if (value.trim()) {
+  } else if (value.trim() || validationType === 'lastName') {
     input.classList.remove('error');
     input.classList.add('valid');
     return true;
@@ -257,8 +313,10 @@ function validateAllRegisterInputs() {
         let errorMessage = '';
         switch (type) {
           case 'firstName':
-          case 'lastName':
             errorMessage = validateName(input.value);
+            break;
+          case 'lastName':
+            errorMessage = validateLastName(input.value);
             break;
           case 'phone':
             errorMessage = validatePhone(input.value);
@@ -276,7 +334,51 @@ function validateAllRegisterInputs() {
             );
             break;
         }
-        firstError = errorMessage;
+        if (errorMessage) {
+          firstError = errorMessage;
+        }
+      }
+    }
+  });
+
+  if (!isValid && firstError) {
+    showNotification('error', 'Validation Error', firstError);
+  }
+
+  return isValid;
+}
+
+function validatePasswordResetInputs() {
+  const newPassword = document.getElementById('newPassword');
+  const confirmNewPassword = document.getElementById('confirmNewPassword');
+
+  const validations = [
+    { input: newPassword, type: 'newPassword', name: 'New Password' },
+    { input: confirmNewPassword, type: 'confirmNewPassword', name: 'Confirm New Password' }
+  ];
+
+  let isValid = true;
+  let firstError = null;
+
+  validations.forEach(({ input, type, name }) => {
+    if (!validateInput(input, type)) {
+      isValid = false;
+      if (!firstError) {
+        let errorMessage = '';
+        switch (type) {
+          case 'newPassword':
+            errorMessage = validatePassword(input.value);
+            break;
+          case 'confirmNewPassword':
+            errorMessage = validateConfirmPassword(
+              document.getElementById('newPassword').value,
+              input.value
+            );
+            break;
+        }
+        if (errorMessage) {
+          firstError = errorMessage;
+        }
       }
     }
   });
@@ -409,6 +511,28 @@ function setupPasswordToggles() {
     toggleConfirmPassword.classList.toggle('fa-eye-slash');
     toggleConfirmPassword.classList.toggle('fa-eye');
   });
+
+  // New password toggle
+  const toggleNewPassword = document.getElementById('toggleNewPassword');
+  const newPassword = document.getElementById('newPassword');
+  
+  toggleNewPassword.addEventListener('click', () => {
+    const type = newPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    newPassword.setAttribute('type', type);
+    toggleNewPassword.classList.toggle('fa-eye-slash');
+    toggleNewPassword.classList.toggle('fa-eye');
+  });
+
+  // Confirm new password toggle
+  const toggleConfirmNewPassword = document.getElementById('toggleConfirmNewPassword');
+  const confirmNewPassword = document.getElementById('confirmNewPassword');
+  
+  toggleConfirmNewPassword.addEventListener('click', () => {
+    const type = confirmNewPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmNewPassword.setAttribute('type', type);
+    toggleConfirmNewPassword.classList.toggle('fa-eye-slash');
+    toggleConfirmNewPassword.classList.toggle('fa-eye');
+  });
 }
 
 // Forgot password functionality
@@ -427,8 +551,14 @@ function setupForgotPassword() {
     }
 
     userEmail = enteredEmail;
+    isFromForgotPassword = true;
     
     document.getElementById('otpEmailDisplay').textContent = userEmail;
+    
+    // Update OTP form content for password reset
+    document.querySelector('#otpForm .otp-welcome').textContent = 'Password Reset Verification';
+    document.querySelector('#otpForm .otp-instruction').innerHTML = `We've sent a verification code to<br /><span class="otp-email" id="otpEmailDisplay">${userEmail}</span>`;
+    document.getElementById('backToRegister').textContent = '← Back to Login';
     
     // Switch to OTP form
     switchForms(loginForm, otpForm);
@@ -450,9 +580,11 @@ function setupForgotPassword() {
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const otpForm = document.getElementById("otpForm");
+const passwordResetForm = document.getElementById("passwordResetForm");
 const switchToRegister = document.getElementById("switchToRegister");
 const switchToLogin = document.getElementById("switchToLogin");
 const backToRegister = document.getElementById("backToRegister");
+const backToLogin = document.getElementById("backToLogin");
 const formFlash = document.getElementById("formFlash");
 const mainFormContainer = document.getElementById("mainFormContainer");
 
@@ -465,12 +597,15 @@ function switchForms(fromForm, toForm) {
   // Change form width immediately
   if (toForm.id === "registerForm") {
     mainFormContainer.classList.add("register-mode");
-    mainFormContainer.classList.remove("otp-mode");
+    mainFormContainer.classList.remove("otp-mode", "password-reset-mode");
   } else if (toForm.id === "otpForm") {
     mainFormContainer.classList.add("otp-mode");
-    mainFormContainer.classList.remove("register-mode");
-  } else {
+    mainFormContainer.classList.remove("register-mode", "password-reset-mode");
+  } else if (toForm.id === "passwordResetForm") {
+    mainFormContainer.classList.add("password-reset-mode");
     mainFormContainer.classList.remove("register-mode", "otp-mode");
+  } else {
+    mainFormContainer.classList.remove("register-mode", "otp-mode", "password-reset-mode");
   }
 
   setTimeout(() => {
@@ -482,6 +617,9 @@ function switchForms(fromForm, toForm) {
     if (toForm.id === "otpForm") {
       updateSpeedometer(0);
       document.getElementById("digitalDisplay").textContent = "ENTER OTP";
+    } else if (toForm.id === "passwordResetForm") {
+      updateSpeedometer(0);
+      document.getElementById("digitalDisplay").textContent = "SET NEW PASSWORD";
     } else {
       updateFormProgress(toForm);
     }
@@ -492,6 +630,9 @@ function switchForms(fromForm, toForm) {
 function updateFormProgress(form) {
   if (form.id === "otpForm") {
     const progress = calculateOTPProgress();
+    updateSpeedometer(progress);
+  } else if (form.id === "passwordResetForm") {
+    const progress = calculatePasswordResetProgress();
     updateSpeedometer(progress);
   } else {
     const progress = calculateFormProgress(form);
@@ -515,51 +656,86 @@ backToRegister.addEventListener("click", (e) => {
   if (otpTimer) {
     clearInterval(otpTimer);
   }
-  switchForms(otpForm, registerForm);
+  
+  if (isFromForgotPassword) {
+    isFromForgotPassword = false;
+    switchForms(otpForm, loginForm);
+  } else {
+    switchForms(otpForm, registerForm);
+  }
+});
+
+backToLogin.addEventListener("click", (e) => {
+  e.preventDefault();
+  switchForms(passwordResetForm, loginForm);
 });
 
 // Event listeners for input changes
-document.querySelectorAll(".form-input").forEach((input) => {
-  input.addEventListener("input", () => {
-    const activeForm = document.querySelector(".form-content.active");
-    
-    // Validate input on change for register form
-    if (activeForm.id === "registerForm") {
-      const inputId = input.id;
-      let validationType = '';
+document.addEventListener('DOMContentLoaded', function() {
+  // Add event listeners to all form inputs
+  document.querySelectorAll(".form-input").forEach((input) => {
+    input.addEventListener("input", () => {
+      const activeForm = document.querySelector(".form-content.active");
       
-      switch (inputId) {
-        case 'firstName':
-          validationType = 'firstName';
-          break;
-        case 'lastName':
-          validationType = 'lastName';
-          break;
-        case 'phoneNumber':
-          validationType = 'phone';
-          break;
-        case 'registerEmail':
-          validationType = 'email';
-          break;
-        case 'registerPassword':
-          validationType = 'password';
-          // Also revalidate confirm password if it has a value
-          const confirmPass = document.getElementById('confirmPassword');
-          if (confirmPass.value) {
-            validateInput(confirmPass, 'confirmPassword');
-          }
-          break;
-        case 'confirmPassword':
-          validationType = 'confirmPassword';
-          break;
+      // Validate input on change for register form
+      if (activeForm.id === "registerForm") {
+        const inputId = input.id;
+        let validationType = '';
+        
+        switch (inputId) {
+          case 'firstName':
+            validationType = 'firstName';
+            break;
+          case 'lastName':
+            validationType = 'lastName';
+            break;
+          case 'phoneNumber':
+            validationType = 'phone';
+            break;
+          case 'registerEmail':
+            validationType = 'email';
+            break;
+          case 'registerPassword':
+            validationType = 'password';
+            // Also revalidate confirm password if it has a value
+            const confirmPass = document.getElementById('confirmPassword');
+            if (confirmPass.value) {
+              validateInput(confirmPass, 'confirmPassword');
+            }
+            break;
+          case 'confirmPassword':
+            validationType = 'confirmPassword';
+            break;
+        }
+        
+        if (validationType) {
+          validateInput(input, validationType);
+        }
+      } else if (activeForm.id === "passwordResetForm") {
+        const inputId = input.id;
+        let validationType = '';
+        
+        switch (inputId) {
+          case 'newPassword':
+            validationType = 'newPassword';
+            // Also revalidate confirm password if it has a value
+            const confirmNewPass = document.getElementById('confirmNewPassword');
+            if (confirmNewPass.value) {
+              validateInput(confirmNewPass, 'confirmNewPassword');
+            }
+            break;
+          case 'confirmNewPassword':
+            validationType = 'confirmNewPassword';
+            break;
+        }
+        
+        if (validationType) {
+          validateInput(input, validationType);
+        }
       }
       
-      if (validationType) {
-        validateInput(input, validationType);
-      }
-    }
-    
-    updateFormProgress(activeForm);
+      updateFormProgress(activeForm);
+    });
   });
 });
 
@@ -567,6 +743,7 @@ document.querySelectorAll(".form-input").forEach((input) => {
 const loginBtn = document.getElementById("loginBtn");
 const registerBtn = document.getElementById("registerBtn");
 const otpSubmitBtn = document.getElementById("otpSubmitBtn");
+const passwordResetBtn = document.getElementById("passwordResetBtn");
 const resendBtn = document.getElementById("resendBtn");
 const googleSigninLogin = document.getElementById("googleSigninLogin");
 const googleSigninRegister = document.getElementById("googleSigninRegister");
@@ -584,7 +761,13 @@ registerBtn.addEventListener("click", (e) => {
   if (validateAllRegisterInputs()) {
     // Store user email for OTP display
     userEmail = document.getElementById('registerEmail').value;
+    isFromForgotPassword = false;
     document.getElementById('otpEmailDisplay').textContent = userEmail;
+    
+    // Reset OTP form content for registration
+    document.querySelector('#otpForm .otp-welcome').textContent = 'Thank you for becoming a member!';
+    document.querySelector('#otpForm .otp-instruction').innerHTML = `We've sent a verification code to<br /><span class="otp-email" id="otpEmailDisplay">${userEmail}</span>`;
+    document.getElementById('backToRegister').textContent = '← Back to Registration';
     
     // Switch to OTP form
     switchForms(registerForm, otpForm);
@@ -618,15 +801,48 @@ otpSubmitBtn.addEventListener("click", (e) => {
     return;
   }
   
-  // Simulate OTP verification (replace with actual verification logic)
-  updateSpeedometer(100);
-  document.getElementById("digitalDisplay").textContent = "REGISTRATION COMPLETE!";
-  
+  // Clear the timer
   if (otpTimer) {
     clearInterval(otpTimer);
   }
   
-  showNotification("success", "Registration Successful", "Welcome to the Vignesh Vishnu Motors family!");
+  // Check if this is for password reset or registration
+  if (isFromForgotPassword) {
+    // Switch to password reset form
+    document.getElementById('resetEmailDisplay').textContent = userEmail;
+    switchForms(otpForm, passwordResetForm);
+    showNotification("success", "OTP Verified", "Please set your new password");
+  } else {
+    // Registration complete
+    updateSpeedometer(100);
+    document.getElementById("digitalDisplay").textContent = "REGISTRATION COMPLETE!";
+    showNotification("success", "Registration Successful", "Welcome to the Vignesh Vishnu Motors family!");
+  }
+});
+
+passwordResetBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  
+  if (validatePasswordResetInputs()) {
+    updateSpeedometer(100);
+    document.getElementById("digitalDisplay").textContent = "PASSWORD RESET SUCCESS!";
+    
+    // Reset form state
+    isFromForgotPassword = false;
+    
+    // Clear password inputs
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmNewPassword').value = '';
+    document.getElementById('newPassword').classList.remove('error', 'valid');
+    document.getElementById('confirmNewPassword').classList.remove('error', 'valid');
+    
+    showNotification("success", "Password Reset Successful", "Your password has been updated successfully. You can now login with your new password.");
+    
+    // Switch back to login form after a short delay
+    setTimeout(() => {
+      switchForms(passwordResetForm, loginForm);
+    }, 2000);
+  }
 });
 
 resendBtn.addEventListener("click", (e) => {
@@ -648,7 +864,8 @@ resendBtn.addEventListener("click", (e) => {
   
   updateSpeedometer(0);
   
-  showNotification("info", "OTP Resent", `New verification code sent to ${userEmail}`);
+  const messageType = isFromForgotPassword ? "password reset" : "verification";
+  showNotification("info", "OTP Resent", `New ${messageType} code sent to ${userEmail}`);
 });
 
 // Google Sign-in handlers
