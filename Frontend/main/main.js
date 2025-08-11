@@ -1603,7 +1603,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         updateSummary(isMobile = false) {
             // Fix: Use correct element ID format for both mobile and desktop
-            const prefix = isMobile ? 'mobile' : 'quotation';
+            const prefix = isMobile ? 'mobileQuotation' : 'quotation';
             
             const summaryModel = document.getElementById(`${prefix}SummaryModel`);
             const summaryVariant = document.getElementById(`${prefix}SummaryVariant`);
