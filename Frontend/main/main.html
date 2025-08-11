@@ -158,56 +158,302 @@
               quotes with all necessary details including pricing,
               specifications, and terms.
             </p>
-            <div style="text-align: center; margin-top: 40px">
-              <div
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--primary-light)
-                  );
-                  padding: 30px;
-                  border-radius: 15px;
-                  color: white;
-                  margin-bottom: 20px;
-                "
-              >
-                <i
-                  class="fas fa-file-invoice-dollar"
-                  style="font-size: 3rem; margin-bottom: 15px"
-                ></i>
-                <h3>Professional Quotations</h3>
-                <p>Streamlined quote generation system</p>
+            
+            <div class="quotation-form-container">
+              <!-- Model Selection -->
+              <div class="quotation-section">
+                <div class="section-header">
+                  <i class="fas fa-motorcycle"></i>
+                  <h3>Select Model</h3>
+                </div>
+                <div class="custom-select" id="quotationModelSelect">
+                  <div class="select-trigger">
+                    <span class="select-text">Choose your preferred model</span>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                  </div>
+                  <div class="select-options">
+                    <div class="select-option" data-value="suzuki-access-125">Suzuki Access 125</div>
+                    <div class="select-option" data-value="suzuki-burgman-street">Suzuki Burgman Street</div>
+                    <div class="select-option" data-value="suzuki-avenis">Suzuki Avenis</div>
+                    <div class="select-option" data-value="suzuki-gixxer-150">Suzuki Gixxer 150</div>
+                    <div class="select-option" data-value="suzuki-vstrom-sx-250">Suzuki V-Strom Sx (250)</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Variant Selection -->
+              <div class="quotation-section" id="quotationVariantSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-cogs"></i>
+                  <h3>Select Variant</h3>
+                </div>
+                <div class="custom-select" id="quotationVariantSelect">
+                  <div class="select-trigger">
+                    <span class="select-text">Choose variant</span>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                  </div>
+                  <div class="select-options" id="quotationVariantOptions">
+                    <!-- Options will be populated by JavaScript -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Color Selection -->
+              <div class="quotation-section" id="quotationColorSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-palette"></i>
+                  <h3>Select Color</h3>
+                </div>
+                <div class="color-grid" id="quotationColorGrid">
+                  <!-- Colors will be populated by JavaScript -->
+                </div>
+              </div>
+
+              <!-- Insurance Selection -->
+              <div class="quotation-section" id="quotationInsuranceSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-shield-alt"></i>
+                  <h3>Insurance Option</h3>
+                </div>
+                <div class="insurance-options">
+                  <div class="insurance-card" data-value="with">
+                    <i class="fas fa-check-circle"></i>
+                    <span>With Insurance</span>
+                    <p>Complete protection coverage</p>
+                  </div>
+                  <div class="insurance-card" data-value="without">
+                    <i class="fas fa-times-circle"></i>
+                    <span>Without Insurance</span>
+                    <p>Self-managed insurance</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order Summary -->
+              <div class="order-summary" id="quotationOrderSummary" style="display: none;">
+                <h4><i class="fas fa-clipboard-list"></i> Quotation Summary</h4>
+                <div class="summary-content">
+                  <div class="summary-item">
+                    <span>Model:</span>
+                    <span id="quotationSummaryModel">-</span>
+                  </div>
+                  <div class="summary-item">
+                    <span>Variant:</span>
+                    <span id="quotationSummaryVariant">-</span>
+                  </div>
+                  <div class="summary-item">
+                    <span>Color:</span>
+                    <span id="quotationSummaryColor">-</span>
+                  </div>
+                  <div class="summary-item">
+                    <span>Insurance:</span>
+                    <span id="quotationSummaryInsurance">-</span>
+                  </div>
+                  <div class="summary-item">
+                    <span>Order Date:</span>
+                    <span id="quotationSummaryDate">-</span>
+                  </div>
+                </div>
+                <div class="pricing-note">
+                  <i class="fas fa-info-circle"></i>
+                  <p>Our sales team will contact you with detailed pricing information and assist with your purchase decision.</p>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="quotation-submit" id="quotationSubmit" style="display: none;">
+                <button class="custom-btn" id="submitQuotationRequest">
+                  <i class="fas fa-paper-plane"></i>
+                  Request Quotation
+                </button>
               </div>
             </div>
           </div>
-
+          
           <div class="content-section" id="bookingSection">
             <h2>Online Booking</h2>
-            <p>
-              Schedule appointments and manage bookings. View upcoming
-              appointments and availability for service and consultations.
-            </p>
-            <div style="text-align: center; margin-top: 40px">
-              <div
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--primary-dark),
-                    var(--primary)
-                  );
-                  padding: 30px;
-                  border-radius: 15px;
-                  color: white;
-                  margin-bottom: 20px;
-                "
-              >
-                <i
-                  class="fas fa-calendar-check"
-                  style="font-size: 3rem; margin-bottom: 15px"
-                ></i>
-                <h3>Smart Scheduling</h3>
-                <p>Efficient appointment management system</p>
+            <p>Configure your perfect bike and schedule your purchase with our smart booking system.</p>
+            
+            <div class="booking-container">
+              <!-- Bike Selection Section -->
+              <div class="booking-section">
+                <div class="section-header">
+                  <i class="fas fa-motorcycle"></i>
+                  <h3>Select Your Model</h3>
+                </div>
+                
+                <div class="custom-select" id="modelSelect">
+                  <div class="select-trigger">
+                    <span class="select-text">Choose your bike model</span>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                  </div>
+                  <div class="select-options">
+                    <div class="select-option" data-value="access125">Suzuki Access 125</div>
+                    <div class="select-option" data-value="burgman">Suzuki Burgman Street</div>
+                    <div class="select-option" data-value="avenis">Suzuki Avenis</div>
+                    <div class="select-option" data-value="gixxer">Suzuki Gixxer 150</div>
+                    <div class="select-option" data-value="vstrom">Suzuki V-Strom SX (250)</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Variant Selection Section -->
+              <div class="booking-section" id="variantSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-cogs"></i>
+                  <h3>Select Variant</h3>
+                </div>
+                
+                <div class="custom-select" id="variantSelect">
+                  <div class="select-trigger">
+                    <span class="select-text">Choose variant</span>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                  </div>
+                  <div class="select-options"></div>
+                </div>
+              </div>
+
+              <!-- Color Selection Section -->
+              <div class="booking-section" id="colorSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-palette"></i>
+                  <h3>Select Color</h3>
+                </div>
+                
+                <div class="color-grid" id="colorGrid">
+                  <!-- Colors will be populated by JavaScript -->
+                </div>
+              </div>
+
+              <!-- Free Helmet Section -->
+              <div class="booking-section" id="helmetSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-hard-hat"></i>
+                  <h3>Free Helmet (Black)</h3>
+                </div>
+                
+                <div class="helmet-options">
+                  <div class="helmet-card" data-type="full">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Full Face</span>
+                  </div>
+                  <div class="helmet-card" data-type="half">
+                    <i class="fas fa-circle"></i>
+                    <span>Half Face</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Seat Color Section -->
+              <div class="booking-section" id="seatSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-chair"></i>
+                  <h3>Seat Color</h3>
+                </div>
+                
+                <div class="seat-options">
+                  <div class="seat-card active" data-color="default">
+                    <div class="seat-color" style="background: linear-gradient(135deg, #8B4513, #654321);"></div>
+                    <span>Default</span>
+                  </div>
+                  <div class="seat-card" data-color="black">
+                    <div class="seat-color" style="background: linear-gradient(135deg, #1a1a1a, #333);"></div>
+                    <span>Black</span>
+                  </div>
+                  <div class="seat-card" data-color="maroon">
+                    <div class="seat-color" style="background: linear-gradient(135deg, #800000, #A0522D);"></div>
+                    <span>Maroon</span>
+                  </div>
+                  <div class="seat-card" data-color="beige">
+                    <div class="seat-color" style="background: linear-gradient(135deg, #F5F5DC, #D2B48C);"></div>
+                    <span>Beige</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Delivery Date Section -->
+              <div class="booking-section" id="deliverySection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-calendar-alt"></i>
+                  <h3>Expected Delivery Date</h3>
+                </div>
+                
+                <input type="date" id="deliveryDate" class="custom-input">
+                <p class="delivery-note">
+                  <i class="fas fa-info-circle"></i>
+                  Delivery within 1-7 days based on stock availability
+                </p>
+              </div>
+
+              <!-- Important Information - Now shown earlier -->
+              <div class="booking-section" id="infoSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-info-circle"></i>
+                  <h3>Important Information</h3>
+                </div>
+                
+                <div class="info-cards">
+                  <div class="info-card">
+                    <i class="fas fa-credit-card"></i>
+                    <h4>Payment Options</h4>
+                    <p>All forms of payment accepted</p>
+                  </div>
+                  
+                  <div class="info-card">
+                    <i class="fas fa-headset"></i>
+                    <h4>Sales Support</h4>
+                    <p>Our team will contact you within 24 hours</p>
+                  </div>
+                  
+                  <div class="info-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h4>Required Documents</h4>
+                    <ul>
+                      <li>Address Proof: Aadhaar/Ration Card/Voter ID/Passport/License</li>
+                      <li>4 Passport Size Photos</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Insurance Section -->
+              <div class="booking-section" id="insuranceSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-shield-alt"></i>
+                  <h3>Insurance</h3>
+                </div>
+                
+                <div class="toggle-container">
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="insuranceToggle">
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <span class="toggle-label">Add comprehensive insurance</span>
+                </div>
+              </div>
+
+              <!-- Additional Requirements Section -->
+              <div class="booking-section" id="additionalSection" style="display: none;">
+                <div class="section-header">
+                  <i class="fas fa-plus-circle"></i>
+                  <h3>Additional Requirements</h3>
+                </div>
+                
+                <textarea id="additionalNotes" class="custom-textarea" placeholder="Any additional accessories like bike cover, foot rest, etc..."></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="booking-submit" id="submitSection" style="display: none;">
+                <button type="button" id="submitBooking" class="custom-btn">
+                  <i class="fas fa-shopping-cart"></i>
+                  <span>Book Your Bike</span>
+                </button>
+              </div>
+
+              <!-- Order Summary -->
+              <div class="order-summary" id="orderSummary" style="display: none;">
+                <h4><i class="fas fa-clipboard-list"></i> Order Summary</h4>
+                <div class="summary-content"></div>
               </div>
             </div>
           </div>
@@ -215,29 +461,72 @@
           <div class="content-section" id="testRideSection">
             <h2>Test Ride Booking</h2>
             <p>
-              Manage motorcycle test ride requests. Schedule and track test ride
-              appointments with ease and efficiency.
+              Select your preferred motorcycle model and book a test ride experience.
+              Our team will contact you to confirm your appointment.
             </p>
-            <div style="text-align: center; margin-top: 40px">
-              <div
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--primary-light),
-                    var(--accent)
-                  );
-                  padding: 30px;
-                  border-radius: 15px;
-                  color: white;
-                  margin-bottom: 20px;
-                "
-              >
-                <i
-                  class="fas fa-motorcycle"
-                  style="font-size: 3rem; margin-bottom: 15px"
-                ></i>
-                <h3>Test Drive Experience</h3>
-                <p>Book your perfect ride experience</p>
+            
+            <div class="test-ride-container">
+              <!-- Bike Selection -->
+              <div class="bike-selection-section">
+                <h3><i class="fas fa-motorcycle"></i> Select Motorcycle</h3>
+                <div class="bike-grid" id="bikeGrid">
+                  <!-- Bikes will be populated by JavaScript -->
+                </div>
+                <div class="selected-bike-display" id="selectedBikeDisplay">
+                  <i class="fas fa-info-circle"></i>
+                  <span>Please select a motorcycle model</span>
+                </div>
+              </div>
+
+              <!-- Booking Form -->
+              <div class="booking-form-section">
+                <form id="testRideForm" class="test-ride-form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="testRideDate"><i class="fas fa-calendar-alt"></i> Preferred Date</label>
+                      <input type="date" id="testRideDate" name="testRideDate" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="testRideTime"><i class="fas fa-clock"></i> Time Slot</label>
+                      <select id="testRideTime" name="testRideTime" required>
+                        <option value="">Select time slot</option>
+                        <option value="9:00-10:00">9:00 AM - 10:00 AM</option>
+                        <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
+                        <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
+                        <option value="12:00-13:00">12:00 PM - 1:00 PM</option>
+                        <option value="14:00-15:00">2:00 PM - 3:00 PM</option>
+                        <option value="15:00-16:00">3:00 PM - 4:00 PM</option>
+                        <option value="16:00-17:00">4:00 PM - 5:00 PM</option>
+                        <option value="17:00-18:00">5:00 PM - 6:00 PM</option>
+                        <option value="18:00-19:00">6:00 PM - 7:00 PM</option>
+                        <option value="19:00-20:00">7:00 PM - 8:00 PM</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="customerAddress"><i class="fas fa-map-marker-alt"></i> Your Location/Area</label>
+                    <input type="text" id="customerAddress" name="customerAddress" placeholder="Enter your area or location" required>
+                  </div>
+
+                  <div class="shop-location-section">
+                    <h4><i class="fas fa-store"></i> Our Showroom Location</h4>
+                    <div class="map-container">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.0913873517434!2d78.56639407453983!3d12.510101424829351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bac556ca4eb2fe1%3A0x5912f577ca565192!2sVIGNESH%20VISHNU%20MOTORS!5e0!3m2!1sen!2sin!4v1754925521099!5m2!1sen!2sin" 
+                              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+
+                  <div class="license-note">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Please bring your original driving license for the test ride</span>
+                  </div>
+
+                  <button type="submit" class="submit-btn test-ride-submit">
+                    <i class="fas fa-paper-plane"></i>
+                    Book Test Ride
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -245,89 +534,244 @@
           <div class="content-section" id="gallerySection">
             <h2>Gallery</h2>
             <p>
-              Showcase your motorcycle collection with high-quality images and
-              detailed descriptions of all available models.
+              Browse our stunning motorcycle collection with interactive image
+              gallery.
             </p>
-            <div style="text-align: center; margin-top: 40px">
-              <div
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--feature),
-                    var(--primary-dark)
-                  );
-                  padding: 30px;
-                  border-radius: 15px;
-                  color: white;
-                  margin-bottom: 20px;
-                "
-              >
-                <i
-                  class="fas fa-images"
-                  style="font-size: 3rem; margin-bottom: 15px"
-                ></i>
-                <h3>Visual Showcase</h3>
-                <p>Stunning motorcycle collections</p>
+
+            <div id="gallery-cards">
+              <div class="gallery-card">
+                <div class="gallery-card-content">
+                  <div
+                    class="gallery-card-image"
+                    style="
+                      background-image: url('https://lh3.googleusercontent.com/p/AF1QipMgiQiSxeq-_2Vmu03NAINvpDf1aqFIlHqj_hYp=s1360-w1360-h1020-rw');
+                    "
+                  ></div>
+                  <div class="gallery-card-info">
+                    <h4>Motorcycle 1</h4>
+                    <span>Premium Collection</span>
+                  </div>
+                </div>
               </div>
+
+              <div class="gallery-card">
+                <div class="gallery-card-content">
+                  <div
+                    class="gallery-card-image"
+                    style="
+                      background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4npjEaZX14Fnd8GmAWT2dw3Z_n5K5v1Xx6OQnvOwjov7YwcUxjhfeoywVaPv5I-fqEZis5obGMGt1roKPXvUxYA0xC7mjouGwSDHsaYDIkElTW9ZLUv5KUMnKj0KV1bsq6uT9KGRuA0KAic=s1360-w1360-h1020-rw');
+                    "
+                  ></div>
+                  <div class="gallery-card-info">
+                    <h4>Motorcycle 2</h4>
+                    <span>Sport Series</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gallery-card">
+                <div class="gallery-card-content">
+                  <div
+                    class="gallery-card-image"
+                    style="
+                      background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr49H3yvtCQ7hZuplRHCNonrjPWXIFo3ltsyVcrD6DTaV1KMPDpLPE2S3i3FiZdYcFdgYRDlMRJn0nk6o5Dh3F9Bk1xQY9Z1emI_9JvsMtCv9AdHSHS-31qxwp25JaQtXNaui8xhIbOj34=s1360-w1360-h1020-rw');
+                    "
+                  ></div>
+                  <div class="gallery-card-info">
+                    <h4>Motorcycle 3</h4>
+                    <span>Classic Edition</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gallery-card">
+                <div class="gallery-card-content">
+                  <div
+                    class="gallery-card-image"
+                    style="
+                      background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUNwkQQb51bZGZmOpNmJli5GxeLkxirwLilPSSZIDw4Xcef7XKuUZF8iHvgIAbtxuj7xLXySScxLKzXkcqS5MgwqejTKtv7X0m_bRGz63XAWgTEzYSfsSSGu8ecg1fQBCpYKsjjhnpn6IU=s1360-w1360-h1020-rw');
+                    "
+                  ></div>
+                  <div class="gallery-card-info">
+                    <h4>Motorcycle 4</h4>
+                    <span>Adventure Series</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gallery-card">
+                <div class="gallery-card-content">
+                  <div
+                    class="gallery-card-image"
+                    style="
+                      background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqKiBflG9YGD_PAk8oFmEReny02g7-vSu9lblFSqMQGAtG06Dec08b9NUiIxuWpHST43nEALAPtl4qt_CSMwBoPnF680WjWvr1mbNhiC8mYlw-HlR0HECcLWggEIScTuCBquc5nR1GqLQQR=s1360-w1360-h1020-rw');
+                    "
+                  ></div>
+                  <div class="gallery-card-info">
+                    <h4>Motorcycle 5</h4>
+                    <span>Limited Edition</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gallery-card">
+                <div class="gallery-card-content">
+                  <div
+                    class="gallery-card-image"
+                    style="
+                      background-image: url('https://lh3.googleusercontent.com/p/AF1QipMgiQiSxeq-_2Vmu03NAINvpDf1aqFIlHqj_hYp=s1360-w1360-h1020-rw');
+                    "
+                  ></div>
+                  <div class="gallery-card-info">
+                    <h4>Motorcycle 6</h4>
+                    <span>Street Collection</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery-navigation">
+              <button class="gallery-nav-btn" id="gallery-prev">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="gallery-nav-btn" id="gallery-next">
+                <i class="fas fa-chevron-right"></i>
+              </button>
             </div>
           </div>
 
           <div class="content-section" id="feedbackSection">
             <h2>Customer Feedback</h2>
-            <p>
-              View and manage customer reviews and ratings. Respond to feedback
-              and continuously improve your services.
-            </p>
-            <div style="text-align: center; margin-top: 40px">
-              <div
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--accent),
-                    var(--violet)
-                  );
-                  padding: 30px;
-                  border-radius: 15px;
-                  color: white;
-                  margin-bottom: 20px;
-                "
-              >
-                <i
-                  class="fas fa-star"
-                  style="font-size: 3rem; margin-bottom: 15px"
-                ></i>
-                <h3>Customer Voice</h3>
-                <p>Reviews and rating management</p>
+            <p>We value your opinion! Please share your experience with us.</p>
+            
+            <div class="feedback-container">
+              <div class="feedback-form-section">
+                <form class="feedback-form" id="feedbackForm">
+                  <div class="form-group">
+                    <label>Overall Rating</label>
+                    <div class="star-rating" id="starRating">
+                      <span class="star" data-rating="1">★</span>
+                      <span class="star" data-rating="2">★</span>
+                      <span class="star" data-rating="3">★</span>
+                      <span class="star" data-rating="4">★</span>
+                      <span class="star" data-rating="5">★</span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="overallReview">Overall Experience</label>
+                    <textarea id="overallReview" name="overallReview" placeholder="Tell us about your overall experience..." rows="3" required></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="thingsLiked">What did you like most?</label>
+                    <textarea id="thingsLiked" name="thingsLiked" placeholder="What aspects did you enjoy the most?" rows="2"></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="improvements">Areas for Improvement</label>
+                    <textarea id="improvements" name="improvements" placeholder="What can we improve?" rows="2"></textarea>
+                  </div>
+                  
+                  <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Feedback
+                  </button>
+                </form>
+              </div>
+              
+              <div class="feedback-card-section">
+                <div class="feedback-card">
+                  <div class="feedback-card-content">
+                    <div class="feedback-card-image" style="background-image: url('../assets/images/feedback1.png')"></div>
+                    <div class="feedback-card-info">
+                      <h4>Share Your Thoughts</h4>
+                      <span>We appreciate your feedback</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <div class="content-section" id="profileSection">
             <h2>Profile Management</h2>
-            <p>
-              Update your account settings and personal information. Change
-              password, preferences, and business details.
-            </p>
-            <div style="text-align: center; margin-top: 40px">
-              <div
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--violet),
-                    var(--pink)
-                  );
-                  padding: 30px;
-                  border-radius: 15px;
-                  color: white;
-                  margin-bottom: 20px;
-                "
-              >
-                <i
-                  class="fas fa-user"
-                  style="font-size: 3rem; margin-bottom: 15px"
-                ></i>
-                <h3>Account Settings</h3>
-                <p>Manage your profile and preferences</p>
+            <p>Update your account settings and personal information.</p>
+            
+            <div class="profile-container">
+              <div class="profile-form-section">
+                <div id="profileFormContainer">
+                  <form class="profile-form" id="profileForm">
+                    <div class="profile-header">
+                      <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                      </div>
+                      <div class="profile-info">
+                        <h3 id="profileName">Anand</h3>
+                        <p id="joinDate">Member since June 2024</p>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="fullName">Full Name</label>
+                      <input type="text" id="fullName" name="fullName" value="Anand" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <input type="email" id="email" name="email" value="anand@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="phone">Phone Number</label>
+                      <input type="tel" id="phone" name="phone" value="+91 9876543210" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="currentPassword">Current Password</label>
+                      <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter current password">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="newPassword">New Password</label>
+                      <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="updateProfileBtn">
+                      <i class="fas fa-save"></i> Update Profile
+                    </button>
+                  </form>
+                </div>
+                
+                <div id="otpContainer" class="otp-container hidden">
+                  <div class="otp-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                  </div>
+                  <h3>OTP Verification</h3>
+                  <p>An OTP for updating your profile has been sent to:</p>
+                  <p class="email-display" id="emailDisplay"></p>
+                  
+                  <form class="otp-form" id="otpForm">
+                    <div class="otp-inputs">
+                      <input type="text" maxlength="1" class="otp-input" required>
+                      <input type="text" maxlength="1" class="otp-input" required>
+                      <input type="text" maxlength="1" class="otp-input" required>
+                      <input type="text" maxlength="1" class="otp-input" required>
+                      <input type="text" maxlength="1" class="otp-input" required>
+                      <input type="text" maxlength="1" class="otp-input" required>
+                    </div>
+                    
+                    <div class="otp-actions">
+                      <button type="submit" class="submit-btn">
+                        <i class="fas fa-check"></i> Verify OTP
+                      </button>
+                      <button type="button" class="cancel-btn" id="cancelOtp">
+                        <i class="fas fa-times"></i> Cancel
+                      </button>
+                    </div>
+                  </form>
+                  
+                  <p class="resend-text">Didn't receive the code? <a href="#" id="resendOtp">Resend OTP</a> (<span id="otpTimer">03:00</span>)</p>
+                </div>
               </div>
             </div>
           </div>
@@ -362,149 +806,612 @@
       <div class="mobile-content" id="mobileQuotationSection">
         <h2>Quotation Management</h2>
         <p>Create and manage quotes for customers on mobile device.</p>
-        <div style="text-align: center; margin-top: 30px">
-          <div
-            style="
-              background: linear-gradient(
-                135deg,
-                var(--primary),
-                var(--primary-light)
-              );
-              padding: 25px;
-              border-radius: 15px;
-              color: white;
-            "
-          >
-            <i
-              class="fas fa-file-invoice-dollar"
-              style="font-size: 2.5rem; margin-bottom: 10px"
-            ></i>
-            <h3>Mobile Quotations</h3>
-            <p>Quick and easy quote generation</p>
+        
+        <div class="mobile-quotation-container">
+          <!-- Mobile Model Selection -->
+          <div class="mobile-quotation-section">
+            <div class="mobile-section-header">
+              <i class="fas fa-motorcycle"></i>
+              <h3>Select Model</h3>
+            </div>
+            <div class="mobile-custom-select" id="mobileQuotationModelSelect">
+              <div class="mobile-select-trigger">
+                <span class="mobile-select-text">Choose your preferred model</span>
+                <i class="fas fa-chevron-down mobile-select-arrow"></i>
+              </div>
+              <div class="mobile-select-options">
+                <div class="mobile-select-option" data-value="suzuki-access-125">Suzuki Access 125</div>
+                <div class="mobile-select-option" data-value="suzuki-burgman-street">Suzuki Burgman Street</div>
+                <div class="mobile-select-option" data-value="suzuki-avenis">Suzuki Avenis</div>
+                <div class="mobile-select-option" data-value="suzuki-gixxer-150">Suzuki Gixxer 150</div>
+                <div class="mobile-select-option" data-value="suzuki-vstrom-sx-250">Suzuki V-Strom Sx (250)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Variant Selection -->
+          <div class="mobile-quotation-section" id="mobileQuotationVariantSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-cogs"></i>
+              <h3>Select Variant</h3>
+            </div>
+            <div class="mobile-custom-select" id="mobileQuotationVariantSelect">
+              <div class="mobile-select-trigger">
+                <span class="mobile-select-text">Choose variant</span>
+                <i class="fas fa-chevron-down mobile-select-arrow"></i>
+              </div>
+              <div class="mobile-select-options" id="mobileQuotationVariantOptions">
+                <!-- Options will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Color Selection -->
+          <div class="mobile-quotation-section" id="mobileQuotationColorSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-palette"></i>
+              <h3>Select Color</h3>
+            </div>
+            <div class="mobile-color-grid" id="mobileQuotationColorGrid">
+              <!-- Colors will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Mobile Insurance Selection -->
+          <div class="mobile-quotation-section" id="mobileQuotationInsuranceSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-shield-alt"></i>
+              <h3>Insurance Option</h3>
+            </div>
+            <div class="mobile-insurance-options">
+              <div class="mobile-insurance-card" data-value="with">
+                <i class="fas fa-check-circle"></i>
+                <span>With Insurance</span>
+              </div>
+              <div class="mobile-insurance-card" data-value="without">
+                <i class="fas fa-times-circle"></i>
+                <span>Without Insurance</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Order Summary -->
+          <div class="mobile-order-summary" id="mobileQuotationOrderSummary" style="display: none;">
+            <h4><i class="fas fa-clipboard-list"></i> Quotation Summary</h4>
+            <div class="mobile-summary-content">
+              <div class="summary-item">
+                <span>Model:</span>
+                <span id="mobileQuotationSummaryModel">-</span>
+              </div>
+              <div class="summary-item">
+                <span>Variant:</span>
+                <span id="mobileQuotationSummaryVariant">-</span>
+              </div>
+              <div class="summary-item">
+                <span>Color:</span>
+                <span id="mobileQuotationSummaryColor">-</span>
+              </div>
+              <div class="summary-item">
+                <span>Insurance:</span>
+                <span id="mobileQuotationSummaryInsurance">-</span>
+              </div>
+              <div class="summary-item">
+                <span>Order Date:</span>
+                <span id="mobileQuotationSummaryDate">-</span>
+              </div>
+            </div>
+            <div class="mobile-pricing-note">
+              <i class="fas fa-info-circle"></i>
+              <p>Our sales team will contact you with detailed pricing information.</p>
+            </div>
+          </div>
+
+          <!-- Mobile Submit Button -->
+          <div class="mobile-quotation-submit" id="mobileQuotationSubmit" style="display: none;">
+            <button class="mobile-custom-btn" id="mobileSubmitQuotationRequest">
+              <i class="fas fa-paper-plane"></i>
+              Request Quotation
+            </button>
           </div>
         </div>
       </div>
 
       <div class="mobile-content" id="mobileBookingSection">
         <h2>Online Booking</h2>
-        <p>Schedule appointments from your mobile device with ease.</p>
-        <div style="text-align: center; margin-top: 30px">
-          <div
-            style="
-              background: linear-gradient(
-                135deg,
-                var(--primary-dark),
-                var(--primary)
-              );
-              padding: 25px;
-              border-radius: 15px;
-              color: white;
-            "
-          >
-            <i
-              class="fas fa-calendar-check"
-              style="font-size: 2.5rem; margin-bottom: 10px"
-            ></i>
-            <h3>Mobile Booking</h3>
-            <p>Schedule on the go</p>
+        <p>Configure your bike and book from your mobile device.</p>
+        
+        <div class="mobile-booking-container">
+          <!-- Mobile sections follow same structure but with mobile-specific classes -->
+          <div class="mobile-booking-section">
+            <div class="mobile-section-header">
+              <i class="fas fa-motorcycle"></i>
+              <h3>Select Model</h3>
+            </div>
+            
+            <div class="mobile-custom-select" id="mobileModelSelect">
+              <div class="mobile-select-trigger">
+                <span class="mobile-select-text">Choose your bike</span>
+                <i class="fas fa-chevron-down mobile-select-arrow"></i>
+              </div>
+              <div class="mobile-select-options">
+                <div class="mobile-select-option" data-value="access125">Suzuki Access 125</div>
+                <div class="mobile-select-option" data-value="burgman">Suzuki Burgman Street</div>
+                <div class="mobile-select-option" data-value="avenis">Suzuki Avenis</div>
+                <div class="mobile-select-option" data-value="gixxer">Suzuki Gixxer 150</div>
+                <div class="mobile-select-option" data-value="vstrom">Suzuki V-Strom SX (250)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile-booking-section" id="mobileVariantSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-cogs"></i>
+              <h3>Variant</h3>
+            </div>
+            
+            <div class="mobile-custom-select" id="mobileVariantSelect">
+              <div class="mobile-select-trigger">
+                <span class="mobile-select-text">Choose variant</span>
+                <i class="fas fa-chevron-down mobile-select-arrow"></i>
+              </div>
+              <div class="mobile-select-options"></div>
+            </div>
+          </div>
+
+          <div class="mobile-booking-section" id="mobileColorSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-palette"></i>
+              <h3>Color</h3>
+            </div>
+            
+            <div class="mobile-color-grid" id="mobileColorGrid"></div>
+          </div>
+
+          <div class="mobile-booking-section" id="mobileHelmetSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-hard-hat"></i>
+              <h3>Free Black Helmet</h3>
+            </div>
+            
+            <div class="mobile-helmet-options">
+              <div class="mobile-helmet-card" data-type="full">
+                <i class="fas fa-shield-alt"></i>
+                <span>Full Face</span>
+              </div>
+              <div class="mobile-helmet-card" data-type="half">
+                <i class="fas fa-circle"></i>
+                <span>Half Face</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile-booking-section" id="mobileSeatSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-chair"></i>
+              <h3>Seat Color</h3>
+            </div>
+            
+            <div class="mobile-seat-options">
+              <div class="mobile-seat-card active" data-color="default">
+                <div class="mobile-seat-color" style="background: linear-gradient(135deg, #8B4513, #654321);"></div>
+                <span>Default</span>
+              </div>
+              <div class="mobile-seat-card" data-color="black">
+                <div class="mobile-seat-color" style="background: linear-gradient(135deg, #1a1a1a, #333);"></div>
+                <span>Black</span>
+              </div>
+              <div class="mobile-seat-card" data-color="maroon">
+                <div class="mobile-seat-color" style="background: linear-gradient(135deg, #800000, #A0522D);"></div>
+                <span>Maroon</span>
+              </div>
+              <div class="mobile-seat-card" data-color="beige">
+                <div class="mobile-seat-color" style="background: linear-gradient(135deg, #F5F5DC, #D2B48C);"></div>
+                <span>Beige</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile-booking-section" id="mobileDeliverySection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-calendar-alt"></i>
+              <h3>Delivery Date</h3>
+            </div>
+            
+            <input type="date" id="mobileDeliveryDate" class="mobile-custom-input">
+            <p class="mobile-delivery-note">
+              <i class="fas fa-info-circle"></i>
+              Delivery within 1-7 days
+            </p>
+          </div>
+
+          <div class="mobile-booking-section" id="mobileInfoSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-info-circle"></i>
+              <h3>Information</h3>
+            </div>
+            
+            <div class="mobile-info-cards">
+              <div class="mobile-info-card">
+                <i class="fas fa-credit-card"></i>
+                <span>All payments accepted</span>
+              </div>
+              <div class="mobile-info-card">
+                <i class="fas fa-headset"></i>
+                <span>24hr response guaranteed</span>
+              </div>
+              <div class="mobile-info-card">
+                <i class="fas fa-file-alt"></i>
+                <span>Address proof + 4 photos needed</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile-booking-section" id="mobileInsuranceSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-shield-alt"></i>
+              <h3>Insurance</h3>
+            </div>
+            
+            <div class="mobile-toggle-container">
+              <label class="mobile-toggle-switch">
+                <input type="checkbox" id="mobileInsuranceToggle">
+                <span class="mobile-toggle-slider"></span>
+              </label>
+              <span class="mobile-toggle-label">Add insurance</span>
+            </div>
+          </div>
+
+          <div class="mobile-booking-section" id="mobileAdditionalSection" style="display: none;">
+            <div class="mobile-section-header">
+              <i class="fas fa-plus-circle"></i>
+              <h3>Additional</h3>
+            </div>
+            
+            <textarea id="mobileAdditionalNotes" class="mobile-custom-textarea" placeholder="Additional accessories..."></textarea>
+          </div>
+
+          <div class="mobile-booking-submit" id="mobileSubmitSection" style="display: none;">
+            <button type="button" id="mobileSubmitBooking" class="mobile-custom-btn">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Book Now</span>
+            </button>
+          </div>
+
+          <div class="mobile-order-summary" id="mobileOrderSummary" style="display: none;">
+            <h4><i class="fas fa-clipboard-list"></i> Summary</h4>
+            <div class="mobile-summary-content"></div>
           </div>
         </div>
       </div>
 
       <div class="mobile-content" id="mobileTestRideSection">
         <h2>Test Ride Booking</h2>
-        <p>Book test rides directly from your phone quickly and efficiently.</p>
-        <div style="text-align: center; margin-top: 30px">
-          <div
-            style="
-              background: linear-gradient(
-                135deg,
-                var(--primary-light),
-                var(--accent)
-              );
-              padding: 25px;
-              border-radius: 15px;
-              color: white;
-            "
-          >
-            <i
-              class="fas fa-motorcycle"
-              style="font-size: 2.5rem; margin-bottom: 10px"
-            ></i>
-            <h3>Mobile Test Rides</h3>
-            <p>Experience on demand</p>
+        <p>Select your preferred bike and book a test ride on the go.</p>
+        
+        <div class="mobile-test-ride-container">
+          <!-- Mobile Bike Selection -->
+          <div class="mobile-bike-selection">
+            <h3><i class="fas fa-motorcycle"></i> Choose Motorcycle</h3>
+            <div class="mobile-bike-grid" id="mobileBikeGrid">
+              <!-- Bikes will be populated by JavaScript -->
+            </div>
+            <div class="mobile-selected-bike" id="mobileSelectedBike">
+              <i class="fas fa-info-circle"></i>
+              <span>Select a motorcycle model</span>
+            </div>
           </div>
+
+          <!-- Mobile Booking Form -->
+          <form id="mobileTestRideForm" class="mobile-test-ride-form">
+            <div class="mobile-form-group">
+              <label for="mobileTestRideDate"><i class="fas fa-calendar-alt"></i> Date</label>
+              <input type="date" id="mobileTestRideDate" name="testRideDate" required>
+            </div>
+            
+            <div class="mobile-form-group">
+              <label for="mobileTestRideTime"><i class="fas fa-clock"></i> Time Slot</label>
+              <select id="mobileTestRideTime" name="testRideTime" required>
+                <option value="">Select time</option>
+                <option value="9:00-10:00">9:00 AM - 10:00 AM</option>
+                <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
+                <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
+                <option value="12:00-13:00">12:00 PM - 1:00 PM</option>
+                <option value="14:00-15:00">2:00 PM - 3:00 PM</option>
+                <option value="15:00-16:00">3:00 PM - 4:00 PM</option>
+                <option value="16:00-17:00">4:00 PM - 5:00 PM</option>
+                <option value="17:00-18:00">5:00 PM - 6:00 PM</option>
+                <option value="18:00-19:00">6:00 PM - 7:00 PM</option>
+                <option value="19:00-20:00">7:00 PM - 8:00 PM</option>
+              </select>
+            </div>
+            
+            <div class="mobile-form-group">
+              <label for="mobileCustomerAddress"><i class="fas fa-map-marker-alt"></i> Your Area</label>
+              <input type="text" id="mobileCustomerAddress" name="customerAddress" placeholder="Your location" required>
+            </div>
+
+            <div class="mobile-map-section">
+              <h4><i class="fas fa-store"></i> Our Showroom</h4>
+              <div class="mobile-map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.0913873517434!2d78.56639407453983!3d12.510101424829351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bac556ca4eb2fe1%3A0x5912f577ca565192!2sVIGNESH%20VISHNU%20MOTORS!5e0!3m2!1sen!2sin!4v1754925521099!5m2!1sen!2sin" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+
+            <div class="mobile-license-note">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>Bring your original driving license</span>
+            </div>
+
+            <button type="submit" class="mobile-submit-btn">
+              <i class="fas fa-paper-plane"></i>
+              Book Test Ride
+            </button>
+          </form>
         </div>
       </div>
 
       <div class="mobile-content" id="mobileGallerySection">
         <h2>Gallery</h2>
-        <p>Browse our motorcycle collection optimized for mobile viewing.</p>
-        <div style="text-align: center; margin-top: 30px">
-          <div
-            style="
-              background: linear-gradient(
-                135deg,
-                var(--feature),
-                var(--primary-dark)
-              );
-              padding: 25px;
-              border-radius: 15px;
-              color: white;
-            "
-          >
-            <i
-              class="fas fa-images"
-              style="font-size: 2.5rem; margin-bottom: 10px"
-            ></i>
-            <h3>Mobile Gallery</h3>
-            <p>Swipe through stunning collections</p>
+        <p>
+          Swipe through our motorcycle collection optimized for mobile viewing.
+        </p>
+
+        <div class="mobile-gallery-swiper">
+          <div class="mobile-gallery-groups">
+            <div
+              class="mobile-gallery-group"
+              data-index="0"
+              data-status="active"
+            >
+              <div
+                class="mobile-gallery-little-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/p/AF1QipMgiQiSxeq-_2Vmu03NAINvpDf1aqFIlHqj_hYp=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-big-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4npjEaZX14Fnd8GmAWT2dw3Z_n5K5v1Xx6OQnvOwjov7YwcUxjhfeoywVaPv5I-fqEZis5obGMGt1roKPXvUxYA0xC7mjouGwSDHsaYDIkElTW9ZLUv5KUMnKj0KV1bsq6uT9KGRuA0KAic=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-little-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr49H3yvtCQ7hZuplRHCNonrjPWXIFo3ltsyVcrD6DTaV1KMPDpLPE2S3i3FiZdYcFdgYRDlMRJn0nk6o5Dh3F9Bk1xQY9Z1emI_9JvsMtCv9AdHSHS-31qxwp25JaQtXNaui8xhIbOj34=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-big-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUNwkQQb51bZGZmOpNmJli5GxeLkxirwLilPSSZIDw4Xcef7XKuUZF8iHvgIAbtxuj7xLXySScxLKzXkcqS5MgwqejTKtv7X0m_bRGz63XAWgTEzYSfsSSGu8ecg1fQBCpYKsjjhnpn6IU=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-little-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqKiBflG9YGD_PAk8oFmEReny02g7-vSu9lblFSqMQGAtG06Dec08b9NUiIxuWpHST43nEALAPtl4qt_CSMwBoPnF680WjWvr1mbNhiC8mYlw-HlR0HECcLWggEIScTuCBquc5nR1GqLQQR=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-big-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/p/AF1QipMgiQiSxeq-_2Vmu03NAINvpDf1aqFIlHqj_hYp=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-little-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4npjEaZX14Fnd8GmAWT2dw3Z_n5K5v1Xx6OQnvOwjov7YwcUxjhfeoywVaPv5I-fqEZis5obGMGt1roKPXvUxYA0xC7mjouGwSDHsaYDIkElTW9ZLUv5KUMnKj0KV1bsq6uT9KGRuA0KAic=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-big-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr49H3yvtCQ7hZuplRHCNonrjPWXIFo3ltsyVcrD6DTaV1KMPDpLPE2S3i3FiZdYcFdgYRDlMRJn0nk6o5Dh3F9Bk1xQY9Z1emI_9JvsMtCv9AdHSHS-31qxwp25JaQtXNaui8xhIbOj34=s1360-w1360-h1020-rw');
+                "
+              ></div>
+            </div>
+
+            <div
+              class="mobile-gallery-group"
+              data-index="1"
+              data-status="unknown"
+            >
+              <div
+                class="mobile-gallery-little-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUNwkQQb51bZGZmOpNmJli5GxeLkxirwLilPSSZIDw4Xcef7XKuUZF8iHvgIAbtxuj7xLXySScxLKzXkcqS5MgwqejTKtv7X0m_bRGz63XAWgTEzYSfsSSGu8ecg1fQBCpYKsjjhnpn6IU=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-big-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqKiBflG9YGD_PAk8oFmEReny02g7-vSu9lblFSqMQGAtG06Dec08b9NUiIxuWpHST43nEALAPtl4qt_CSMwBoPnF680WjWvr1mbNhiC8mYlw-HlR0HECcLWggEIScTuCBquc5nR1GqLQQR=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-little-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/p/AF1QipMgiQiSxeq-_2Vmu03NAINvpDf1aqFIlHqj_hYp=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-big-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4npjEaZX14Fnd8GmAWT2dw3Z_n5K5v1Xx6OQnvOwjov7YwcUxjhfeoywVaPv5I-fqEZis5obGMGt1roKPXvUxYA0xC7mjouGwSDHsaYDIkElTW9ZLUv5KUMnKj0KV1bsq6uT9KGRuA0KAic=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-little-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr49H3yvtCQ7hZuplRHCNonrjPWXIFo3ltsyVcrD6DTaV1KMPDpLPE2S3i3FiZdYcFdgYRDlMRJn0nk6o5Dh3F9Bk1xQY9Z1emI_9JvsMtCv9AdHSHS-31qxwp25JaQtXNaui8xhIbOj34=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-big-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUNwkQQb51bZGZmOpNmJli5GxeLkxirwLilPSSZIDw4Xcef7XKuUZF8iHvgIAbtxuj7xLXySScxLKzXkcqS5MgwqejTKtv7X0m_bRGz63XAWgTEzYSfsSSGu8ecg1fQBCpYKsjjhnpn6IU=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-little-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqKiBflG9YGD_PAk8oFmEReny02g7-vSu9lblFSqMQGAtG06Dec08b9NUiIxuWpHST43nEALAPtl4qt_CSMwBoPnF680WjWvr1mbNhiC8mYlw-HlR0HECcLWggEIScTuCBquc5nR1GqLQQR=s1360-w1360-h1020-rw');
+                "
+              ></div>
+              <div
+                class="mobile-gallery-big-card mobile-gallery-card"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/p/AF1QipMgiQiSxeq-_2Vmu03NAINvpDf1aqFIlHqj_hYp=s1360-w1360-h1020-rw');
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="mobile-gallery-nav-buttons">
+            <button
+              id="mobile-gallery-prev"
+              onclick="handleMobileGalleryPrevClick()"
+            >
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button
+              id="mobile-gallery-next"
+              onclick="handleMobileGalleryNextClick()"
+            >
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </div>
 
       <div class="mobile-content" id="mobileFeedbackSection">
         <h2>Customer Feedback</h2>
-        <p>View and submit feedback from your mobile device.</p>
-        <div style="text-align: center; margin-top: 30px">
-          <div
-            style="
-              background: linear-gradient(135deg, var(--accent), var(--violet));
-              padding: 25px;
-              border-radius: 15px;
-              color: white;
-            "
-          >
-            <i
-              class="fas fa-star"
-              style="font-size: 2.5rem; margin-bottom: 10px"
-            ></i>
-            <h3>Mobile Feedback</h3>
-            <p>Rate and review instantly</p>
+        <p>Share your experience with us on mobile.</p>
+        
+        <form class="mobile-feedback-form" id="mobileFeedbackForm">
+          <div class="mobile-form-group">
+            <label>Overall Rating</label>
+            <div class="mobile-star-rating" id="mobileStarRating">
+              <span class="mobile-star" data-rating="1">★</span>
+              <span class="mobile-star" data-rating="2">★</span>
+              <span class="mobile-star" data-rating="3">★</span>
+              <span class="mobile-star" data-rating="4">★</span>
+              <span class="mobile-star" data-rating="5">★</span>
+            </div>
+          </div>
+          
+          <div class="mobile-form-group">
+            <label for="mobileOverallReview">Overall Experience</label>
+            <textarea id="mobileOverallReview" name="overallReview" placeholder="Tell us about your experience..." rows="2" required></textarea>
+          </div>
+          
+          <div class="mobile-form-group">
+            <label for="mobileThingsLiked">What did you like?</label>
+            <textarea id="mobileThingsLiked" name="thingsLiked" placeholder="What did you enjoy?" rows="2"></textarea>
+          </div>
+          
+          <div class="mobile-form-group">
+            <label for="mobileImprovements">Improvements</label>
+            <textarea id="mobileImprovements" name="improvements" placeholder="What can we improve?" rows="2"></textarea>
+          </div>
+          
+          <button type="submit" class="mobile-submit-btn">
+            <i class="fas fa-paper-plane"></i> Submit Feedback
+          </button>
+        </form>
+        
+        <div class="mobile-feedback-card">
+          <div class="mobile-feedback-card-content">
+            <div class="mobile-feedback-card-image" style="background-image: url('../assets/images/feedback1.png')"></div>
+            <div class="mobile-feedback-card-info">
+              <h4>Your Opinion Matters</h4>
+              <span>Help us improve our service</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="mobile-content" id="mobileProfileSection">
         <h2>Profile Management</h2>
-        <p>Update your profile settings and preferences on mobile.</p>
-        <div style="text-align: center; margin-top: 30px">
-          <div
-            style="
-              background: linear-gradient(135deg, var(--violet), var(--pink));
-              padding: 25px;
-              border-radius: 15px;
-              color: white;
-            "
-          >
-            <i
-              class="fas fa-user"
-              style="font-size: 2.5rem; margin-bottom: 10px"
-            ></i>
-            <h3>Mobile Profile</h3>
-            <p>Manage settings anywhere</p>
-          </div>
+        <p>Update your profile settings on mobile.</p>
+        
+        <div id="mobileProfileFormContainer">
+          <form class="mobile-profile-form" id="mobileProfileForm">
+            <div class="mobile-profile-header">
+              <div class="mobile-profile-avatar">
+                <i class="fas fa-user-circle"></i>
+              </div>
+              <div class="mobile-profile-info">
+                <h3 id="mobileProfileName">Anand</h3>
+                <p id="mobileJoinDate">Member since June 2024</p>
+              </div>
+            </div>
+            
+            <div class="mobile-form-group">
+              <label for="mobileFullName">Full Name</label>
+              <input type="text" id="mobileFullName" name="fullName" value="Anand" required>
+            </div>
+            
+            <div class="mobile-form-group">
+              <label for="mobileEmail">Email</label>
+              <input type="email" id="mobileEmail" name="email" value="anand@example.com" required>
+            </div>
+            
+            <div class="mobile-form-group">
+              <label for="mobilePhone">Phone</label>
+              <input type="tel" id="mobilePhone" name="phone" value="+91 9876543210" required>
+            </div>
+            
+            <div class="mobile-form-group">
+              <label for="mobileCurrentPassword">Current Password</label>
+              <input type="password" id="mobileCurrentPassword" name="currentPassword" placeholder="Current password">
+            </div>
+            
+            <div class="mobile-form-group">
+              <label for="mobileNewPassword">New Password</label>
+              <input type="password" id="mobileNewPassword" name="newPassword" placeholder="New password">
+            </div>
+            
+            <button type="submit" class="mobile-submit-btn" id="mobileUpdateProfileBtn">
+              <i class="fas fa-save"></i> Update Profile
+            </button>
+          </form>
         </div>
+        
+        <div id="mobileOtpContainer" class="mobile-otp-container hidden">
+          <div class="mobile-otp-icon">
+            <i class="fas fa-envelope-open-text"></i>
+          </div>
+          <h3>OTP Verification</h3>
+          <p>An OTP has been sent to:</p>
+          <p class="mobile-email-display" id="mobileEmailDisplay"></p>
+          
+          <form class="mobile-otp-form" id="mobileOtpForm">
+            <div class="mobile-otp-inputs">
+              <input type="text" maxlength="1" class="mobile-otp-input" required>
+              <input type="text" maxlength="1" class="mobile-otp-input" required>
+              <input type="text" maxlength="1" class="mobile-otp-input" required>
+              <input type="text" maxlength="1" class="mobile-otp-input" required>
+              <input type="text" maxlength="1" class="mobile-otp-input" required>
+              <input type="text" maxlength="1" class="mobile-otp-input" required>
+            </div>
+            
+            <div class="mobile-otp-actions">
+              <button type="submit" class="mobile-submit-btn">
+                <i class="fas fa-check"></i> Verify OTP
+              </button>
+              <button type="button" class="mobile-cancel-btn" id="mobileOtpCancel">
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </div>
+          </form>
+          
+          <p class="mobile-resend-text">Didn't receive the code? <a href="#" id="mobileResendOtp">Resend OTP</a> (<span id="mobileOtpTimer">03:00</span>)</p>
+        </div>
+      </div>
       </div>
 
       <!-- Mobile Bottom Navigation -->
