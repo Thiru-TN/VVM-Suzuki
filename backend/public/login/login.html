@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vignesh Vishnu Motors</title>
+    <link rel="icon" href="../assets/images/logo-png.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body class="morning">
+    <!-- Notification System -->
+    <div id="notification" class="notification">
+      <div class="notification-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="notification-content">
+        <div class="notification-title">Success</div>
+        <div class="notification-message">
+          Your message has been sent successfully!
+        </div>
+      </div>
+      <button class="notification-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="logo" onclick="window.location.href='../landing/landing.html'">
+      Vignesh Vishnu Motors
+      <span>Maruti Suzuki - Tirupattur</span>
+    </div>
+
+    <img
+      src="../assets/images/Suzuki.png"
+      alt="Suzuki Logo"
+      class="suzuki-logo"
+    />
+
+    <div class="form-container" id="mainFormContainer">
+      <div class="form-flash" id="formFlash"></div>
+
+      <!-- Login Form -->
+      <div class="form-content active" id="loginForm">
+        <h2 class="form-title">Welcome Back</h2>
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-input"
+            placeholder=" "
+            required
+            id="loginEmail"
+          />
+          <label class="form-label">Email</label>
+        </div>
+        <div class="form-group password-input-container">
+          <input
+            type="password"
+            class="form-input"
+            placeholder=" "
+            required
+            id="loginPassword"
+          />
+          <label class="form-label">Password</label>
+          <i class="fas fa-eye password-toggle" id="toggleLoginPassword"></i>
+        </div>
+        <div class="forgot-password" id="forgotPassword">Forgot Password?</div>
+        <button class="submit-btn" id="loginBtn">Login</button>
+        <button class="google-signin-btn" id="googleSigninLogin">
+          <div class="google-icon"></div>
+          Sign in with Google
+        </button>
+        <div class="switch-form">
+          Don't have an account?
+          <a class="switch-link" id="switchToRegister">Register</a>
+        </div>
+      </div>
+
+      <!-- Register Form -->
+      <div class="form-content" id="registerForm">
+        <h2 class="form-title">Join Our Journey</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-input"
+              placeholder=" "
+              required
+              id="firstName"
+            />
+            <label class="form-label">First Name</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-input"
+              placeholder=" "
+              id="lastName"
+            />
+            <label class="form-label">Last Name</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <input
+              type="tel"
+              class="form-input"
+              placeholder=" "
+              required
+              id="phoneNumber"
+              maxlength="10"
+            />
+            <label class="form-label">Phone Number</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-input"
+              placeholder=" "
+              required
+              id="registerEmail"
+            />
+            <label class="form-label">Email</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group password-input-container">
+            <input
+              type="password"
+              class="form-input"
+              placeholder=" "
+              required
+              id="registerPassword"
+            />
+            <label class="form-label">Password</label>
+            <i
+              class="fas fa-eye password-toggle"
+              id="toggleRegisterPassword"
+            ></i>
+          </div>
+          <div class="form-group password-input-container">
+            <input
+              type="password"
+              class="form-input"
+              placeholder=" "
+              required
+              id="confirmPassword"
+            />
+            <label class="form-label">Confirm Password</label>
+            <i
+              class="fas fa-eye password-toggle"
+              id="toggleConfirmPassword"
+            ></i>
+          </div>
+        </div>
+        <div class="button-row">
+          <button class="submit-btn" id="registerBtn">Register</button>
+          <button class="google-signin-btn" id="googleSigninRegister">
+            <div class="google-icon"></div>
+            Google
+          </button>
+        </div>
+        <div class="switch-form">
+          Already have an account?
+          <a class="switch-link" id="switchToLogin">Login</a>
+        </div>
+      </div>
+
+      <!-- OTP Verification Form -->
+      <div class="form-content" id="otpForm">
+        <h2 class="form-title">Verification</h2>
+        <div class="otp-info">
+          <div class="otp-welcome">Thank you for becoming a member!</div>
+          <div class="otp-instruction">
+            We've sent a verification code to<br />
+            <span class="otp-email" id="otpEmailDisplay">your email</span>
+          </div>
+        </div>
+
+        <div class="otp-input-container">
+          <input type="text" class="otp-digit" maxlength="1" id="otp1" />
+          <input type="text" class="otp-digit" maxlength="1" id="otp2" />
+          <input type="text" class="otp-digit" maxlength="1" id="otp3" />
+          <input type="text" class="otp-digit" maxlength="1" id="otp4" />
+          <input type="text" class="otp-digit" maxlength="1" id="otp5" />
+          <input type="text" class="otp-digit" maxlength="1" id="otp6" />
+        </div>
+
+        <div class="otp-timer">
+          Code expires in:
+          <span class="timer-text" id="timerDisplay">03:00</span>
+        </div>
+
+        <div class="otp-actions">
+          <button class="resend-btn" id="resendBtn" disabled>Resend OTP</button>
+          <button class="submit-btn" id="otpSubmitBtn">Verify</button>
+        </div>
+
+        <div class="switch-form">
+          <a class="switch-link" id="backToRegister">← Back to Registration</a>
+        </div>
+      </div>
+
+      <!-- Password Reset Form -->
+      <div class="form-content" id="passwordResetForm">
+        <h2 class="form-title">Reset Password</h2>
+        <div class="otp-info">
+          <div class="otp-welcome">Create your new password</div>
+          <div class="otp-instruction">
+            Setting new password for<br />
+            <span class="otp-email" id="resetEmailDisplay">your email</span>
+          </div>
+        </div>
+
+        <div class="form-group password-input-container">
+          <input
+            type="password"
+            class="form-input"
+            placeholder=" "
+            required
+            id="newPassword"
+          />
+          <label class="form-label">New Password</label>
+          <i class="fas fa-eye password-toggle" id="toggleNewPassword"></i>
+        </div>
+
+        <div class="form-group password-input-container">
+          <input
+            type="password"
+            class="form-input"
+            placeholder=" "
+            required
+            id="confirmNewPassword"
+          />
+          <label class="form-label">Confirm New Password</label>
+          <i
+            class="fas fa-eye password-toggle"
+            id="toggleConfirmNewPassword"
+          ></i>
+        </div>
+
+        <button class="submit-btn" id="passwordResetBtn">Reset Password</button>
+
+        <div class="switch-form">
+          <a class="switch-link" id="backToLogin">← Back to Login</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speedometer and digital display -->
+    <div class="speedometer-container">
+      <div class="speedometer-dial">
+        <div class="speedometer-marks" id="speedometerMarks"></div>
+        <div class="speedometer-needle" id="speedometerNeedle"></div>
+        <div class="speedometer-center"></div>
+      </div>
+      <div class="digital-display" id="digitalDisplay">READY TO START</div>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="./login.js"></script>
+  </body>
+</html>
